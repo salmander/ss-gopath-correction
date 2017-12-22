@@ -38,9 +38,13 @@ then
   exit 1
 fi
 
+REPO_GO_PATH_DEFAULT="${GOPATH}/src/github.com/JSainsburyPLC/${GO_REPO_NAME}"
+echo "Your go repository will be moved to: '${REPO_GO_PATH_DEFAULT}'"
+read -p "Press enter to confirm: " REPO_GO_PATH
+REPO_GO_PATH=${REPO_GO_PATH:-$REPO_GO_PATH_DEFAULT}
+
 SS_SERVICES_DIR="${SS_WORKSPACE}/smartshop-services"
 REPO_PATH="${SS_SERVICES_DIR}/$REPO"
-REPO_GO_PATH="${GOPATH}/src/github.com/JSainsburyPLC/${GO_REPO_NAME}"
 REPO_SERVICES_DEV_NAME=`echo ${REPO//-/_}`
 REPO_SERVICES_DEV_PATH="${SS_WORKSPACE}/smartshop-services-dev/ansible/roles/services/${REPO_SERVICES_DEV_NAME}"
 COMMAND_MOVE="mv ${REPO_PATH} ${REPO_GO_PATH}"
